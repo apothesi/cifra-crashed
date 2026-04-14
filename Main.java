@@ -7,22 +7,22 @@ public class Main {
     static String cifrar(String s, int salto) {
         String limpo = limpar(s);
         int n = limpo.length();
-        StringBuilder r = new StringBuilder();
-        
-        for (int i = 0, idx = 0; i < n; i++, idx = (idx + salto) % n) {
-            r.append(limpo.charAt(idx));
-        }
-        return r.toString();
-    }
-    
-    static String decifrar(String cifrado, int salto) {
-        int n = cifrado.length();
-        char[] orig = new char[n];
+        char[] cifrado = new char[n];
         
         for (int i = 0; i < n; i++) {
-            orig[(i * salto) % n] = cifrado.charAt(i);
+            cifrado[i] = limpo.charAt((i * salto) % n);
         }
-        return new String(orig);
+        return new String(cifrado);
+    }
+    
+    static String decifrar(String s, int salto) {
+        int n = s.length();
+        char[] limpo = new char[n];
+        
+        for (int i = 0; i < n; i++) {
+            limpo[(i * salto) % n] = s.charAt(i);
+        }
+        return new String(limpo);
     }
     
     public static void main(String[] args) {
